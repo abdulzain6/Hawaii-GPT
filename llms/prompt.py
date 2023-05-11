@@ -1,6 +1,3 @@
-from langchain.output_parsers import RegexParser
-from langchain.prompts import PromptTemplate
-from langchain.output_parsers import RegexParser
 from langchain.prompts import PromptTemplate
 
 

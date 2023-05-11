@@ -18,12 +18,12 @@ from database_manager import BlogPostManager
 from peewee import SqliteDatabase
 from langchain.agents import create_pandas_dataframe_agent
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.agents.agent_toolkits.json.prompt import JSON_SUFFIX
 from langchain.schema import Document
 from langchain.cache import SQLiteCache
 from prompt import SQL_PREFIX, question_prompt, SQL_SUFFIX, PANDAS_SUFFIX
+from creds import OPENAI_API_KEY, PINECONE_API_KEY
 
-#langchain.llm_cache = SQLiteCache(database_path=".langchain.db")
+langchain.llm_cache = SQLiteCache(database_path=".langchain.db")
 
 class ChatHawaii:
     template = """You are a HawaiiGPT,
@@ -211,15 +211,15 @@ if __name__ == "__main__":
     chat = ChatHawaii(
         "blog_posts.db",
         ChatOpenAI(
-            openai_api_key="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",
+            openai_api_key=OPENAI_API_KEY,
             temperature=1,
             model_name="gpt-4",
         ),
-        pinecone_api_key="106247f4-0905-40f0-81f0-d0bacc8ff09b",
+        pinecone_api_key=PINECONE_API_KEY,
         pinecone_environment="northamerica-northeast1-gcp",
         blog_post_manager=BlogPostManager(SqliteDatabase("blog_posts.db")),
         embeddings=OpenAIEmbeddings(
-            openai_api_key="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"
+            openai_api_key=OPENAI_API_KEY
         ),
         index_name="hawai-docs",
         namespace="blog-data",

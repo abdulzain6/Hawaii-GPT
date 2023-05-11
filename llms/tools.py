@@ -1,6 +1,5 @@
 from database_manager import BlogPostManager, SqliteDatabase
 from langchain import PromptTemplate, LLMChain
-from langchain.chat_models import ChatOpenAI
 import json
 
 class BlogSearch():
@@ -102,8 +101,4 @@ The dates are accepted in the following format August 18, 2022.
 if __name__ == "__main__":
     
     search = BlogSearch(BlogPostManager(SqliteDatabase("blog_posts.db")))
-    data = search.execute_tool(
-        "Write me a blog post in the style of joe kent.",
-        ChatOpenAI(openai_api_key="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", temperature=0, model_name="gpt-4"),
-    )
    # print(data)

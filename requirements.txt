@@ -6,3 +6,5 @@ pypdf
 sqlalchemy
 pinecone-client
 tabulate
+streamlit
+fuzzywuzzy
