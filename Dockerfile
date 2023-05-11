@@ -1,5 +1,11 @@
 FROM python:3.9-slim
 
+ARG OPENAI_API_KEY
+ARG PINECONE_API_KEY
+
+ENV OPENAI_API_KEY=$OPENAI_API_KEY
+ENV PINECONE_API_KEY=$PINECONE_API_KEY
+
 COPY . /app
 WORKDIR /app
 
@@ -9,9 +15,6 @@ RUN apt-get update && apt-get install -y \
     software-properties-common \
     git \
     && rm -rf /var/lib/apt/lists/*
-
-ENV OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
-ENV PINECONE_API_KEY=${{ secrets.PINECONE_API_KEY }}
 
 
 RUN pip3 install -r requirements.txt
