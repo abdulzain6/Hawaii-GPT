@@ -1,0 +1,8 @@
+scrapy
+langchain
+tqdm
+pycryptodome
+pypdf
+sqlalchemy
+pinecone-client
+tabulate
